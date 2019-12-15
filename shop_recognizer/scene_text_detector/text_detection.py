@@ -23,7 +23,7 @@ class TextDetection:
 		self.textThreshold = 0.7
 		self.linkThreshold = 0.4
 		self.refinement = False
-		self.cuda = False
+		self.cuda = True
 		self.lowText = 0.4
 		self.poly = False
 		self.magRatio = 1.5
