@@ -1,22 +1,23 @@
-motel 0
-shoe 1
-pharmacy 2
-jewelry 3
-candy 4
-restaurant 5
-bakery 6
-cafe 7
-gift 8
-pizza 9
-butcher 10
-bookstore 11
-fastfood 12
-toy 13
-repair 14
-icecream 15
-beauty 16
-pet 17
-supermarket 18
-hardware 19
-bar 20
-clothing 21
+motel
+shoe shop
+pharmacy
+jewelry
+candy shop
+restaurant
+bakery
+cafe
+gift shop
+pizza
+butcher
+bookstore
+fastfood
+toy store
+repair shop
+icecream shop
+beauty salon
+pet shop
+supermarket
+hardware store
+bar
+clothing
+computer store

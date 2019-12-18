@@ -12,16 +12,16 @@ class TextRecognizer:
     def __init__(self):
         self.model_path = 'shop_recognizer/scene_text_recognizer/moran/model/blstm.pth'
         self.alphabet = '0:1:2:3:4:5:6:7:8:9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z:$'
-        self.cuda_flag = False
+        self.cuda_flag = True
         self.recognizer = None
-        if torch.cuda.is_available():
-            self.cuda_flag = True
-            self.recognizer = MORAN(1, len(self.alphabet.split(':')), 256, 32, 100, BidirDecoder=True, CUDA=self.cuda_flag)
-            self.recognizer = self.recognizer.cuda()
-        else:
-            self.recognizer = MORAN(1, len(self.alphabet.split(':')), 256, 32, 100, BidirDecoder=True,
-                          inputDataType='torch.FloatTensor',
-                          CUDA=self.cuda_flag)
+        #if torch.cuda.is_available():
+        #self.cuda_flag = False
+        self.recognizer = MORAN(1, len(self.alphabet.split(':')), 256, 32, 100, BidirDecoder=True, CUDA=self.cuda_flag)
+        self.recognizer = self.recognizer.cuda()
+       # else:
+        #    self.recognizer = MORAN(1, len(self.alphabet.split(':')), 256, 32, 100, BidirDecoder=True,
+         #                 inputDataType='torch.FloatTensor',
+          #                CUDA=self.cuda_flag)
 
         print('loading pretrained model from %s' % self.model_path)
         if self.cuda_flag:

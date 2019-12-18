@@ -90,12 +90,7 @@ class Detector:
         return result, coordinates
 
 
-    def detect(self, inputImage):
-
-        cap = cv.VideoCapture(inputImage)
-
-        # get frame from the video
-        hasFrame, frame = cap.read()
+    def detect(self, frame):
 
         # Create a 4D blob from a frame.
         blob = cv.dnn.blobFromImage(frame, 1 / 255, (self.inpWidth, self.inpHeight), [0, 0, 0], 1, crop=False)
