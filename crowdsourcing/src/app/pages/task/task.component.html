@@ -1,0 +1,45 @@
+<div class="main-content" [hidden]="isTaskAvailable == undefined">
+
+  <mat-card class="example-card card-fix" [hidden]="!isTaskAvailable">
+    <div class="card-fix-container">
+
+      <mat-card-header class="task-header">
+        <button mat-raised-button *ngIf="!activeAnnotation" (click)="toggleAnnotation()">
+          Start Annotation
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button mat-raised-button *ngIf="activeAnnotation" (click)="toggleAnnotation()">
+          <mat-icon>stop</mat-icon>
+          End Annotation
+        </button>
+      </mat-card-header>
+
+      <mat-card-content #parentElement class="image-parent-container">
+        <app-image [width]="width" [active-annotation]="activeAnnotation"
+                   (onAnnotationModeChanged)="onAnnotationModeChanged($event)"
+                   (onTaskLoaded)="onTaskLoaded($event)">
+        </app-image>
+        <app-table></app-table>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="warn">Close</button>
+        <button mat-raised-button color="primary" (click)="submitData()">Submit</button>
+      </mat-card-actions>
+
+    </div>
+  </mat-card>
+
+  <mat-card class="example-card card-fix" [hidden]="isTaskAvailable">
+    <div class="card-fix-container">
+
+      <mat-card-header></mat-card-header>
+
+      <mat-card-content class="center">
+        <h1>Sorry! There is no task available!</h1>
+      </mat-card-content>
+
+    </div>
+  </mat-card>
+
+</div>

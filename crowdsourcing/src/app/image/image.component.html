@@ -1,0 +1,6 @@
+<div #wrapper class="wrapper center">
+    <canvas #imageContainer  id="task-container" [ngClass]="{'annotation-active': activeAnnotation}"
+            (mousedown)="mouseDownEvent($event)" (mouseup)="mouseUpEvent($event)"
+            (mousemove)="mouseMoveEvent($event)">
+    </canvas>
+</div>

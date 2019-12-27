@@ -1,0 +1,66 @@
+.main-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.main-content {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+}
+
+.image-parent-container {
+
+}
+
+
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.example-card {
+  margin-bottom: 50px;
+}
+
+
+.card-fix {
+  padding: 0;
+
+  .card-fix-container {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+    .mat-card-content {
+      flex: 1;
+    }
+
+    & > .mat-card-actions:last-child {
+      margin-bottom: -16px;
+      padding-bottom: 0;
+    }
+  }
+}
+

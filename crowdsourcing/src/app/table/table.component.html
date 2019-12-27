@@ -1,0 +1,40 @@
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.cid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Business Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.labelName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bbox">
+      <th mat-header-cell *matHeaderCellDef> Bbox [top , left , bottom , right]</th>
+      <td mat-cell *matCellDef="let element">
+        [{{element.top}} , {{element.left}} , {{element.bottom}} , {{element.right}}]
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="effort">
+      <th mat-header-cell *matHeaderCellDef> Effort</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.timeEffort}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteRow(element.cid)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

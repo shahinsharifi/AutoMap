@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  <p>Which type of business is it?</p>
+  <app-label (labelSelected)="setLabel($event)"></app-label>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="selectedLabel" [disabled]="!selectedLabel">Save</button>
+</div>

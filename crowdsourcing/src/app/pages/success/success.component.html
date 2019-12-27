@@ -1,0 +1,27 @@
+<div class="main-content">
+
+  <mat-card class="example-card card-fix">
+    <div class="card-fix-container">
+
+      <mat-card-header></mat-card-header>
+
+      <mat-card-content class="center">
+        <div *ngIf="isTokenAvailable">
+          <h1>You have finished the task successfully!</h1>
+          <h3>Please save the following token:</h3>
+          <mat-card class="token-container">
+            <h4>{{taskToken}}</h4>
+          </mat-card>
+        </div>
+        <div *ngIf="!isTokenAvailable">
+          <h1>Unfortunately, your token cannot be retrieved. Please try again!</h1>
+          <h3>Please save the complete URL of this page and send it to us via email</h3>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="next()">Next Task</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>

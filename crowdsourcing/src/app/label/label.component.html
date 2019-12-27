@@ -1,0 +1,9 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Select corresponding business type from here</mat-label>
+    <mat-select [formControl]="formControl">
+      <mat-option *ngFor="let label of labels" [value]="label">{{label.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+

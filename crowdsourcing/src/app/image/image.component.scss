@@ -1,0 +1,31 @@
+.wrapper {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+#buttonWrapper {
+  position: absolute;
+  width: 30px;
+  top: 2px;
+  right: 2px;
+}
+
+input[type = "button"] {
+  padding: 5px;
+  width: 30px;
+  margin: 0px 0px 2px 0px;
+}
+
+.annotation-active{
+  cursor: crosshair;
+}

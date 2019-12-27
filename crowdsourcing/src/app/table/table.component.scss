@@ -1,0 +1,13 @@
+.table-container{
+    max-height: 200px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  font-weight: bold;
+  font-size: 14px;
+}
