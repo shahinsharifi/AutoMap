@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CommandService} from '../../services/command.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
@@ -6,7 +6,8 @@ import {UserService} from '../../services/user.service';
 @Component({
   selector: 'app-success',
   templateUrl: './success.component.html',
-  styleUrls: ['./success.component.scss']
+  styleUrls: ['./success.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SuccessComponent implements OnInit {
 
@@ -14,7 +15,7 @@ export class SuccessComponent implements OnInit {
   taskToken: String;
   isTokenAvailable: boolean = false;
 
-  constructor(private command: CommandService, private route: ActivatedRoute, private router: Router, private userService: UserService) {
+  constructor(private command: CommandService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -27,6 +28,7 @@ export class SuccessComponent implements OnInit {
         if (response.status == "ok") {
           this.isTokenAvailable = true;
           this.taskToken = response.token;
+
         } else {
           this.isTokenAvailable = false;
         }

@@ -13,6 +13,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatStepperModule} from '@angular/material';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatTableModule,
     MatDialogModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule
   ],
   exports: [
     MatSidenavModule,
@@ -44,7 +46,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatFormFieldModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule {}

@@ -1,0 +1,93 @@
+<div class="main-content">
+  <mat-card class="example-card card-fix">
+    <div class="card-fix-container">
+
+      <mat-card-header></mat-card-header>
+
+      <mat-card-content class="content-center">
+        <mat-horizontal-stepper labelPosition="bottom" #stepper>
+          <mat-step>
+            <ng-template matStepLabel>Drawing Bounding box</ng-template>
+            <div class="description-content">
+              <h2>This task is about annotating business-related store fronts on Street-Level images</h2>
+              <br>
+              <h3>1. First, you need to activate annotation mode by pressing the 'Start Annotation' button:</h3>
+              <div class="content-center">
+                <img width="150px" src="assets/1.jpg">
+              </div>
+
+              <h3>2. Once you activated annotation mode, you should accurately draw a bounding box around the store front on the image by holding the left button of you mouse. For Example: </h3>
+              <div class="content-center">
+                <img width="600px" src="assets/2.jpg">
+              </div>
+              <br>
+              <h3 style="color: red">NOTICE: It is possible that the width of image is bigger than your screen size. In that case, you should use the horizontal scroll bar to explore the whole image </h3>
+
+            </div>
+            <div>
+              <button mat-raised-button color="primary" class="move-to-right" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Choosing label</ng-template>
+            <div class="description-content">
+              <h3>3. As soon as drawing a bounding bow, the following window will be opened which asks you to choose the type of store-front:</h3>
+              <div class="content-center">
+                <img width="250px" src="assets/3.jpg">
+              </div>
+
+              <h3>4. By clicking on the drop down button, a list of different business types will be shown and you should choose the corresponding type correctly: </h3>
+              <div class="content-center">
+                <img width="300px" src="assets/4.jpg">
+              </div>
+
+              <h3>5. After choosing the type of business from drop down list, press 'Save' button to close the window.  </h3>
+
+            </div>
+            <div>
+              <button mat-raised-button matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" class="move-to-right" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Submit your answers</ng-template>
+            <div class="description-content">
+              <h3>6. As there are usually more than one store-front on the image, you need to make sure that all visible store-fronts are annotated and listed in the table below the image:</h3>
+              <div class="content-center">
+                <img width="800px" style="border: solid 1px;" src="assets/5.jpg">
+              </div>
+
+              <h3>7. In case of any mistake, you can remove your annotation record by pressing delete button (<mat-icon>delete_outline</mat-icon>) on the table.</h3>
+
+              <br>
+              <h3>8. When you are sure about your annotation records, press 'Submit' button on the bottom-right corner of the page and save your annotations.</h3>
+
+            </div>
+            <div>
+              <button mat-raised-button matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" class="move-to-right" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Finish the task</ng-template>
+            <div class="description-content">
+              <h3>9. Once you submit your annotations records, the following page will be shown which means you have submitted your task successfully:</h3>
+              <div class="content-center">
+                <img width="600px" src="assets/6.jpg">
+              </div>
+              <h3>10. Copy generated token from the gray box(see above) and paste it to the very bottom of page:</h3>
+              <div class="content-center">
+                <img width="600px" src="assets/7.jpg">
+              </div>
+              <h3>11. Validate your token and then, press 'Finish' button to close the task. Please note that the payment will be done only after pressing the 'Finish' button.</h3>
+            </div>
+            <div>
+              <button mat-raised-button color="primary" class="move-to-right"(click)="start()">Go to Task</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </mat-card-content>
+
+    </div>
+  </mat-card>
+</div>

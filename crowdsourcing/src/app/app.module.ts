@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import {TableComponent} from './table/table.component';
 import {HttpClientModule} from '@angular/common/http';
 import {SuccessComponent} from './pages/success/success.component';
 import {TaskComponent} from './pages/task/task.component';
+import {StartComponent} from './pages/start/start.component';
+import {EvaluationComponent} from './pages/evaluation/evaluation.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import {TaskComponent} from './pages/task/task.component';
     ImageComponent,
     DialogComponent,
     TableComponent,
+    StartComponent,
     TaskComponent,
-    SuccessComponent
+    SuccessComponent,
+    EvaluationComponent
   ],
   imports: [
     FormsModule,
@@ -32,6 +36,7 @@ import {TaskComponent} from './pages/task/task.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   entryComponents: [DialogComponent],
   bootstrap: [AppComponent]

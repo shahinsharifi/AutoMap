@@ -27,7 +27,7 @@ export class TaskComponent implements OnInit {
   }
 
   toggleAnnotation() {
-    this.activeAnnotation = !this.activeAnnotation;
+    this.activeAnnotation = true;
   }
 
   onAnnotationModeChanged(mode: boolean) {

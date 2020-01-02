@@ -42,10 +42,10 @@ export class ImageComponent implements OnInit, OnChanges {
               private route: ActivatedRoute, private time: TimeService, private userService: UserService) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    /*this.route.queryParams.subscribe(params => {
 
       if (params.uid)
-        this.userService.setUserId(_.cloneDeep(params.uid));
+        this.userService.setUserId(_.cloneDeep(params.uid));*/
 
       this.loadTask(this.userService.getUserId()).subscribe((task) => {
         if (task && task.status == 'ok') {
@@ -68,7 +68,7 @@ export class ImageComponent implements OnInit, OnChanges {
           this.onTaskLoaded.emit(false);
         }
       });
-    });
+    //});
   }
 
   ngOnChanges(changes: SimpleChanges): void {

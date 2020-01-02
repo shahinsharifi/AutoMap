@@ -5,13 +5,14 @@
 
       <mat-card-header></mat-card-header>
 
-      <mat-card-content class="center">
+      <mat-card-content class="content-center">
         <div *ngIf="isTokenAvailable">
           <h1>You have finished the task successfully!</h1>
-          <h3>Please save the following token:</h3>
           <mat-card class="token-container">
             <h4>{{taskToken}}</h4>
           </mat-card>
+          <br>
+          <h2 style="color: red">Copy generated token and paste it to the very bottom of this page and validate it. Then press 'Finish' button.</h2>
         </div>
         <div *ngIf="!isTokenAvailable">
           <h1>Unfortunately, your token cannot be retrieved. Please try again!</h1>
@@ -19,9 +20,6 @@
         </div>
       </mat-card-content>
 
-      <mat-card-actions align="end">
-        <button mat-raised-button color="primary" (click)="next()">Next Task</button>
-      </mat-card-actions>
     </div>
   </mat-card>
 </div>
