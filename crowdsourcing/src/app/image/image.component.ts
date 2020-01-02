@@ -27,12 +27,14 @@ export class ImageComponent implements OnInit, OnChanges {
   predictionCount: number;
   baseImage = new Image();
   drawingImage = new Image();
-  drawingContext: CanvasRenderingContext2D = null;
   currentBbox: Bbox = null;
   currentAnnotation: Annotation;
+  drawingContext: CanvasRenderingContext2D = null;
 
   @Input('width') width: number;
   @Input('active-annotation') activeAnnotation: boolean;
+  @Input('next-row') next: number;
+  @Input('evaluation-mode') evaluationMode: boolean;
   @Output('onAnnotationModeChanged') onAnnotationModeChanged = new EventEmitter();
   @Output('onTaskLoaded') onTaskLoaded = new EventEmitter();
   @ViewChild('wrapper', {static: true}) wrapper;
@@ -42,11 +44,24 @@ export class ImageComponent implements OnInit, OnChanges {
               private route: ActivatedRoute, private time: TimeService, private userService: UserService) {}
 
   ngOnInit() {
-    /*this.route.queryParams.subscribe(params => {
+    this.nextRow();
+    this.refresh();
+  }
 
-      if (params.uid)
-        this.userService.setUserId(_.cloneDeep(params.uid));*/
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.activeAnnotation) {
+      if (changes.activeAnnotation.currentValue) {
+        this.time.init();
+      } else {
+        this.time.stopTimeRecording();
+      }
+    }else if(changes.next){
+      this.nextRow();
+    }
+  }
 
+  nextRow() {
+    if (!this.evaluationMode) {
       this.loadTask(this.userService.getUserId()).subscribe((task) => {
         if (task && task.status == 'ok') {
           this.currentImageId = task['id'];
@@ -62,27 +77,45 @@ export class ImageComponent implements OnInit, OnChanges {
             context.canvas.height = h;
             this.render(context, this.baseImage, context.canvas.width, context.canvas.height);
           };
-          this.refresh();
           this.onTaskLoaded.emit(true);
         } else {
           this.onTaskLoaded.emit(false);
         }
       });
-    //});
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.activeAnnotation) {
-      if (changes.activeAnnotation.currentValue) {
-        this.time.init();
-      } else {
-        this.time.stopTimeRecording();
-      }
+    } else {
+      this.dataService.removeAll();
+      this.loadAnnotation().subscribe((response) => {
+        if (response && response.status == 'ok') {
+          let image = response.image.name;
+          let url = environment.baseURL + '/' + environment.context + '/image/' + image;
+          this.baseImage.src = url;
+          this.baseImage.onload = () => {
+            let context = this.myCanvas.nativeElement.getContext('2d');
+            const w = this.baseImage.width;
+            const h = this.baseImage.height;
+            context.canvas.width = w;
+            context.canvas.height = h;
+            this.render(context, this.baseImage, context.canvas.width, context.canvas.height);
+            let annotations = response.annotations;
+            let labels = response.labels;
+            for (let i = 0; i < annotations.length; i++) {
+              annotations[i].cid = annotations[i].id;
+              annotations[i].labelName = labels[String(annotations[i].id)];
+              this.dataService.addRow(annotations[i]);
+            }
+          };
+        }
+      });
     }
   }
 
   loadTask(userId: String) {
     const cmd = 'task/get/' + userId;
+    return this.command.execute(cmd, 'GET', 'json', {}, true);
+  }
+
+   loadAnnotation() {
+    const cmd = 'annotation/get';
     return this.command.execute(cmd, 'GET', 'json', {}, true);
   }
 

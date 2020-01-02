@@ -29,6 +29,14 @@ export class DataService {
     this.ANNOTATION_DATA.next(this.ANNOTATION_DATA.getValue());
   }
 
+  public removeAll() {
+    console.log(this.ANNOTATION_DATA.getValue());
+    _.forEach(this.ANNOTATION_DATA.getValue(), (item: Annotation, inx) => {
+      this.ANNOTATION_DATA.getValue().splice(0, 1);
+    });
+    this.ANNOTATION_DATA.next(this.ANNOTATION_DATA.getValue());
+  }
+
   public refresh() {
     this.ANNOTATION_DATA.next(this.ANNOTATION_DATA.getValue());
   }
