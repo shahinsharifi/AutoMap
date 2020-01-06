@@ -68,7 +68,9 @@ class BuildingManager:
         list = []
         for i in range(-1,2):
             for j in range(-1,2):
-                for b in self.building_grid[int(x/self.interval) + i][int(y/self.interval) + j]:
-                    if b not in list:
-                        list.append(b)
+                if 0 <= int(x/self.interval) + i and int(x/self.interval) + i < self.nx:
+                    if 0 <= int(y/self.interval) + j and int(y/self.interval) + j < self.ny:
+                        for b in self.building_grid[int(x/self.interval) + i][int(y/self.interval) + j]:
+                            if b not in list:
+                                list.append(b)
         return list
