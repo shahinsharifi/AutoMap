@@ -43,7 +43,7 @@ class Image:
         self.height         = height
 
     def append_annotation(self, annotation):
-        annotation.raycast = Raycast(latlng.LatLng(self.lat,self.lng), self.width, self.height, (annotation.left+annotation.right)/2, annotation.bottom, self.heading, self.height, self.pitch, self.fov)
+        annotation.raycast = Raycast(latlng.LatLng(self.lat,self.lng), self.width, self.height, (annotation.left+annotation.right)/2, annotation.top, self.heading, self.height, self.pitch, self.fov)
         self.annotations.append(annotation)
 
 
@@ -103,13 +103,14 @@ if __name__=="__main__":
             else:
                 a = Annotation(row[1], row[2], row[3], int(row[4]), int(row[5]), int(row[6]), int(row[7]), int(row[8]), row[9], row[10], row[11], is_correct = 1)
                 annotations[row[0]] = a
-                images[row[2]].append_annotation(a)
-                l = city.locate(a)
-                if store_count < 20: city.plot(a)
-                if l != None:
-                    f.write(','.join(row)+','+str(l[1])+','+str(l[0])+'\n')
-                    store_count += 1
-                else:
-                    f.write(','.join(row)+',,\n')
+                if images[row[2]].country == "us":
+                    images[row[2]].append_annotation(a)
+                    l = city.locate(a)
+                    # if store_count < 20: city.plot(a)
+                    if l != None:
+                        f.write(','.join(row)+','+str(l[1])+','+str(l[0])+'\n')
+                        store_count += 1
+                    else:
+                        f.write(','.join(row)+',,\n')
 
     print(store_count)
