@@ -60,15 +60,17 @@ class City:
 
     def plot(self, annotation):
         plt.figure()
-        i = city.locate(annotations[id])
-        if i == None: return
+        i = city.locate(annotation)
         list = self.buildings.find_buildings(annotation.raycast.camera_latlng)
         for bb in list:
             ndx = [nd.lng for nd in bb.nodes]
             ndy = [nd.lat for nd in bb.nodes]
             plt.plot(ndx, ndy)
-        plt.scatter(annotation.raycast.camera_latlng.lng, annotation.raycast.camera_latlng.lat)
-        plt.plot([annotation.raycast.camera_latlng.lng, i[0]],[annotation.raycast.camera_latlng.lat, i[1]])
+        if i == None:
+            annotation.raycast.plot()
+        else:
+            plt.scatter(annotation.raycast.camera_latlng.lng, annotation.raycast.camera_latlng.lat)
+            plt.plot([annotation.raycast.camera_latlng.lng, i[0]],[annotation.raycast.camera_latlng.lat, i[1]])
         plt.show()
 
 
@@ -76,6 +78,8 @@ if __name__=="__main__":
 
     images = {}
     annotations = {}
+
+    city = City("location_estimator/maps/manhattan/buildings_manhattan.xml")
 
     with open('location_estimator/image.csv') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=',')
@@ -86,18 +90,26 @@ if __name__=="__main__":
             else:
                 images[row[0]] = Image(row[1], float(row[2]), float(row[3]), float(row[4]), float(row[5]), 1.979, float(row[7]), int(row[8]), row[9], float(row[10]))
 
+    f = open('location_estimator/annotation_new.csv','w')
+    store_count = 0
+
     with open('location_estimator/annotation.csv') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=',')
         line_count = 0
         for row in csv_reader:
             if line_count == 0:
+                f.write(','.join(row)+',est_lat,est_lng\n')
                 line_count += 1
             else:
-                annotations[row[0]] = Annotation(row[1], row[2], row[3], int(row[4]), int(row[5]), int(row[6]), int(row[7]), int(row[8]), row[9], row[10], row[11], is_correct = 1)
-                images[row[2]].append_annotation(annotations[row[0]])
+                a = Annotation(row[1], row[2], row[3], int(row[4]), int(row[5]), int(row[6]), int(row[7]), int(row[8]), row[9], row[10], row[11], is_correct = 1)
+                annotations[row[0]] = a
+                images[row[2]].append_annotation(a)
+                l = city.locate(a)
+                if store_count < 20: city.plot(a)
+                if l != None:
+                    f.write(','.join(row)+','+str(l[1])+','+str(l[0])+'\n')
+                    store_count += 1
+                else:
+                    f.write(','.join(row)+',,\n')
 
-    city = City("location_estimator/maps/manhattan/buildings_manhattan.xml")
-
-    for id in annotations.keys():
-        print(city.locate(annotations[id]))
-        # city.plot(annotations[id])
+    print(store_count)

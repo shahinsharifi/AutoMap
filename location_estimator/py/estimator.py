@@ -28,19 +28,10 @@ class Raycast:
         return {"pitch": self.pitch + 0.5 * self.screen_y * self.fov / self.aspect,\
                 "heading": self.heading + 0.5 * self.screen_x * self.fov}
 
-    def get_distance(self):
-        theta = self.get_raycast()["pitch"]
-        if -1 > theta and theta > -89:
-            return abs(self.camera_height / math.tan(theta/180.0*math.pi))
-        else:
-            return None
-
-    def get_latlng(self): # intersection with ground
+    def get_latlng(self): # a point at raycast 50 meters away from the camera
         heading = ((360 - self.get_raycast()["heading"]) + 90)%360
-        distance = self.get_distance()
-        if distance is None: return None
-        x = distance * math.cos(heading/180.0*math.pi)
-        y = distance * math.sin(heading/180.0*math.pi)
+        x = 50 * math.cos(heading/180.0*math.pi)
+        y = 50 * math.sin(heading/180.0*math.pi)
         return self.camera_latlng.get_latlng(x,y)
 
     def get_range(self, segment):
@@ -99,7 +90,7 @@ class Raycast:
                         inter_x = x + b.nodes[i].get_distance(inter_latlng)
                 x += b.nodes[i].get_distance(b.nodes[i+1])
 
-        inter_height = mindis/self.get_distance() * self.camera_height if self.get_distance() != None else None
+        inter_height = mindis * math.tan(self.get_raycast()["pitch"] / 180.0 * math.pi) + self.camera_height
 
         return {"latlng":inter_latlng, "height":inter_height, "building":inter_building, "segment":inter_seg, "x":inter_x}
         # x is the length of the edges from beginning point of the building to the intersection
