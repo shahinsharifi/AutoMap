@@ -2,3 +2,5 @@
 *__pycache__
 *manhattan.xml
 !buildings_manhattan.xml
+*filter_gt.py
+*gt_original.csv

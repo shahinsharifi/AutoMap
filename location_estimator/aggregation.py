@@ -72,8 +72,8 @@ if __name__ == "__main__":
                 line_count += 1
             else:
                 if len(row[14]) > 0:
-                    lat = float(row[14])
-                    lng = float(row[13])
+                    lat = float(row[13])
+                    lng = float(row[14])
                     ll = latlng.LatLng(lat,lng)
                     ll.label = int(row[3])
                     ll.image = int(row[2])
