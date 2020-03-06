@@ -1,11 +1,10 @@
 import torch
 from torch.autograd import Variable
-import shop_recognizer.scene_text_recognizer.moran.tools.utils as utils
-import shop_recognizer.scene_text_recognizer.moran.tools.dataset as dataset
 from PIL import Image
 from collections import OrderedDict
-from shop_recognizer.scene_text_recognizer.moran.core.moran import MORAN
-
+from .moran.core.moran import MORAN
+from .moran.tools import utils as utils
+from .moran.tools import dataset as dataset
 
 class TextRecognizer:
 

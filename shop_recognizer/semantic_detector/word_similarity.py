@@ -23,7 +23,7 @@ class WordSimilarity:
         self.spell = spell
 
 
-    def checkSemanticSimilarity(self, labels, words):
+    def checkSemanticSimilarity2(self, labels, words):
         result = {}
         texts = self.removeNoise2(words)
         for label in labels:
@@ -45,9 +45,10 @@ class WordSimilarity:
         return result
 
 
-    def checkSemanticSimilarity2(self, labels, words):
+    def checkSemanticSimilarity(self, labels, words):
         result = {}
         texts = self.removeNoise2(words)
+        print(texts)
         for label in labels:
             tmp = 0
             doc1 = self.nlp(label)

@@ -4,7 +4,7 @@ from torch.nn import init
 import torch.nn.functional as F
 from torch.autograd import Variable
 from torch.nn.parameter import Parameter
-from shop_recognizer.scene_text_recognizer.moran.core.fracPickup import fracPickup
+from .fracPickup import fracPickup
 
 
 class BidirectionalLSTM(nn.Module):

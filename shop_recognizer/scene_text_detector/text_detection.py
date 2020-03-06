@@ -6,11 +6,11 @@ import time
 import torch
 import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
-from shop_recognizer.scene_text_detector.core import craft_utils
-from shop_recognizer.scene_text_detector.core import imgproc
-from shop_recognizer.scene_text_detector.core.craft import CRAFT
-from shop_recognizer.scene_text_detector.core.refinenet import RefineNet
-from shop_recognizer.scene_text_recognizer.text_recognizer import TextRecognizer
+from .core import craft_utils
+from .core import imgproc
+from .core.craft import CRAFT
+from .core.refinenet import RefineNet
+from ..scene_text_recognizer.text_recognizer import TextRecognizer
 from collections import OrderedDict
 
 class TextDetection:

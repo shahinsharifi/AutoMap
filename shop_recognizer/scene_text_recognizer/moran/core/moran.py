@@ -1,6 +1,6 @@
 import torch.nn as nn
-from shop_recognizer.scene_text_recognizer.moran.core.asrn_res import ASRN
-from shop_recognizer.scene_text_recognizer.moran.core.morn import MORN
+from .asrn_res import ASRN
+from .morn import MORN
 
 
 class MORAN(nn.Module):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
-from shop_recognizer.scene_text_detector.core.basenet.vgg16_bn import vgg16_bn, init_weights
+from ..core.basenet.vgg16_bn import vgg16_bn, init_weights
 
 
 class RefineNet(nn.Module):
