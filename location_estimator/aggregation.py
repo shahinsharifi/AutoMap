@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 
 def aggregate(objects):
 # threshold_1: radius for calculating density, threshold_2: min dis between stores
-    threshold_1 = 2
-    threshold_2 = 4
+    threshold_1 = 5
+    threshold_2 = 10
 
     num = len(objects)
     px = np.zeros(num)
@@ -64,7 +64,8 @@ def aggregate(objects):
 if __name__ == "__main__":
     points = []
     np.random.seed(0)
-    with open('location_estimator/annotation_new.csv') as csvfile:
+    with open('location_estimator/annotation_new_auto.csv') as csvfile:
+    # with open('location_estimator/annotation_new.csv') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=',')
         line_count = 0
         for row in csv_reader:
@@ -81,7 +82,8 @@ if __name__ == "__main__":
                 line_count += 1
     agg_points = aggregate(points)
     print(len(agg_points))
-    f = open("location_estimator/annotation_aggregated.csv","w")
+    f = open("location_estimator/annotation_aggregated_auto.csv","w")
+    # f = open("location_estimator/annotation_aggregated.csv","w")
     f.write("lat,lng,labels,image_ids\n")
     for p in agg_points:
         f.write(str(p.lat)+","+str(p.lng)+",\""+str(p.label)+"\",\""+str(p.image)+"\"\n")
